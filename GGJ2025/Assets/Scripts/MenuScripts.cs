@@ -11,19 +11,27 @@ public class MenuScripts : MonoBehaviour
     
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject credits;
+    [SerializeField] GameObject howToPlay;
 
     private void Start()
     {
         Time.timeScale = 1;
         mainMenu.SetActive(true);
         credits.SetActive(false);
+        howToPlay.SetActive(false);
     }
     
     //manages states of active objects for credits and menu assets
-    public void creditsButton()
+    public void CreditsButton()
     {
         mainMenu.SetActive(false);
         credits.SetActive(true);
+    }
+
+    public void PlayInstruction()
+    {
+        mainMenu.SetActive(false);
+        howToPlay.SetActive(true);
     }
 
     public void MenuButton()

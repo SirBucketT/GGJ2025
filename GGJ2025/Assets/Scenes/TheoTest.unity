@@ -264,6 +264,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 367233832608159080, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397208686762717638, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_Name
+      value: ValueOfScore
+      objectReference: {fileID: 0}
     - target: {fileID: 5928414609594697752, guid: d4471001e57ed5f418fc82409597659d, type: 3}
       propertyPath: m_Name
       value: UiContainer

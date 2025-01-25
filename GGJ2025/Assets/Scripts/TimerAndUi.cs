@@ -16,44 +16,42 @@ public class TimerAndUi : MonoBehaviour
     [SerializeField] TMP_Text timerText;
     [SerializeField] TMP_Text gameOverValueText;
     
-    [SerializeField ]float _timer; //Time left until Game Over is obtained
+    [SerializeField] float _timer = 10f;  
     [SerializeField] float _lerpSpeed = 0.05f;
+    
+    [Header("Game Over Elements")]
     [SerializeField] GameObject gameOver;
     [SerializeField] GameObject gameUI;
-   
-    void Start()
+
+    private void Start()
     {
-        gameOver.SetActive(false);
-        timerFront.minValue = 0;
-        timerBack.minValue = timerFront.minValue;
+        timerFront.minValue = 0f;
         timerFront.maxValue = _timer;
-        timerBack.maxValue = _timer + 5;
+        timerBack.minValue = 0f;
+        timerBack.maxValue = _timer;
+
+        gameOver.SetActive(false);
     }
     
-    void Update()
+    private void Update()
     {
         _timer -= Time.deltaTime;
-        timerText.text = _timer.ToString(CultureInfo.CurrentCulture) + ("S");
         
-        if (timerFront.value != _timer)
+        if (_timer <= 0f)
         {
-            timerFront.value = _timer;
-        }
-
-        if (_timer <= 0)
-        {
-            _timer = 0;
-            Time.timeScale = 0;
+            _timer = 0f;
+            
+            Time.timeScale = 0f;
+            
             gameOver.SetActive(true);
             gameUI.SetActive(false);
         }
-    }
-
-    void LateUpdate()
-    {
-        if (timerFront.value != timerBack.value)
-        {
-            timerBack.value = Mathf.Lerp(timerFront.value, timerBack.value, _lerpSpeed);
-        }
+        
+        timerFront.value = _timer;
+        timerBack.value = _timer + 2;
+        
+        timerBack.value = Mathf.Lerp(timerBack.value, timerFront.value, _lerpSpeed * Time.deltaTime);
+        
+        timerText.text = _timer.ToString("F2", CultureInfo.CurrentCulture) + "S";
     }
 }

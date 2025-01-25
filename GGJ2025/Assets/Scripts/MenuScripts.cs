@@ -4,31 +4,32 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class MenuScripts : MonoBehaviour
 {
     
-    [SerializeField] GameObject MainMenu;
-    [SerializeField] GameObject Credits;
+    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject credits;
 
     private void Start()
     {
         Time.timeScale = 1;
-        MainMenu.SetActive(true);
-        Credits.SetActive(false);
+        mainMenu.SetActive(true);
+        credits.SetActive(false);
     }
     
     //manages states of active objects for credits and menu assets
     public void creditsButton()
     {
-        MainMenu.SetActive(false);
-        Credits.SetActive(true);
+        mainMenu.SetActive(false);
+        credits.SetActive(true);
     }
 
     public void MenuButton()
     {
-        MainMenu.SetActive(true);
-        Credits.SetActive(false);
+        mainMenu.SetActive(true);
+        credits.SetActive(false);
     }
     
     //loads game

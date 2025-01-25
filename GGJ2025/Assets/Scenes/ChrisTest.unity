@@ -331,7 +331,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1704679061}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 285946611429201677, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 544178326}
   m_SourcePrefab: {fileID: 100100000, guid: d4471001e57ed5f418fc82409597659d, type: 3}
 --- !u!1 &119954430
 GameObject:
@@ -573,9 +576,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05caaac29d6778f4f983f5c01b002ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdTime: 0
   soundEffect: {fileID: 0}
   scorePoint: 0
-  holdSlider: {fileID: 1704679062}
+  holdSlider: {fileID: 544178326}
 --- !u!61 &348857855
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -857,9 +861,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05caaac29d6778f4f983f5c01b002ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdTime: 0
   soundEffect: {fileID: 0}
   scorePoint: 0
-  holdSlider: {fileID: 1704679062}
+  holdSlider: {fileID: 544178326}
 --- !u!61 &448687816
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1161,11 +1166,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &544178324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 285946611429201677, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+  m_PrefabInstance: {fileID: 113193511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &544178325 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
   m_PrefabInstance: {fileID: 113193511}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &544178326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544178324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4606387aee7194e9570775103e66f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTriggerEvent: {fileID: 7808575334958676641}
+  holdSlider: {fileID: 1704679062}
 --- !u!1 &563200748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,9 +2086,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05caaac29d6778f4f983f5c01b002ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdTime: 0
   soundEffect: {fileID: 8300000, guid: cd015ac26defef147bfd8856af3211bc, type: 3}
   scorePoint: 0
-  holdSlider: {fileID: 1704679062}
+  holdSlider: {fileID: 544178326}
 --- !u!61 &1461146787
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2341,7 +2366,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.779
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2376,9 +2401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05caaac29d6778f4f983f5c01b002ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdTime: 0
   soundEffect: {fileID: 0}
   scorePoint: 0
-  holdSlider: {fileID: 1704679062}
+  holdSlider: {fileID: 544178326}
 --- !u!61 &1747986209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2526,9 +2552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05caaac29d6778f4f983f5c01b002ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdTime: 0
   soundEffect: {fileID: 0}
   scorePoint: 0
-  holdSlider: {fileID: 1704679062}
+  holdSlider: {fileID: 544178326}
 --- !u!61 &1942496075
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36082,9 +36109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05caaac29d6778f4f983f5c01b002ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holdTime: 0
   soundEffect: {fileID: 0}
   scorePoint: 0
-  holdSlider: {fileID: 1704679062}
+  holdSlider: {fileID: 544178326}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

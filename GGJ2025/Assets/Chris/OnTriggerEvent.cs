@@ -74,57 +74,36 @@ public class OnTriggerEventManager : MonoBehaviour
 public class OnTriggerEvent : MonoBehaviour
 {
     private bool isPlayerInTrigger = false;
-    private float holdTime = 0f;
-    private readonly float requiredHoldTime = 2f;
-    private OnTriggerEventManager manager;
-    private AudioSource audioSource;  // AudioSource to play sound
-    public AudioClip soundEffect;  // Sound effect to be played when holding E
-    public float scorePoint;
-    
-    [Header("References")]
-    [SerializeField] Slider holdSlider;  // The UI Slider for hold progress
+    public float holdTime = 0f;
+    public readonly float requiredHoldTime = 2f;
 
-    void Start()
+    private OnTriggerEventManager manager;
+    public HoldSlider holdSlider;
+    private AudioSource audioSource;
+    public AudioClip soundEffect;
+    public float scorePoint;
+
+    private void Start()
     {
         manager = FindObjectOfType<OnTriggerEventManager>();
         audioSource = GetComponent<AudioSource>();
         scorePoint = 0.0f;
-        
-        if (holdSlider != null)
-        {
-            holdSlider.minValue = 0f;
-            holdSlider.maxValue = requiredHoldTime;
-            holdSlider.value = 0f;
-            holdSlider.gameObject.SetActive(false);
-        }
     }
 
-    void Update()
+    private void Update()
     {
-        bool canHold = isPlayerInTrigger;
-        
-        bool isHolding = canHold && Input.GetKey(KeyCode.E);
-        
-        if (holdSlider != null)
-        {
-            holdSlider.gameObject.SetActive(isHolding);
-        }
-        
-        if (isHolding)
+        // If player is inside trigger and holding E, accumulate holdTime
+        if (isPlayerInTrigger && Input.GetKey(KeyCode.E))
         {
             holdTime += Time.deltaTime;
 
-            // Play the sound effect while holding E down
-            if (holdTime >= 0f && !audioSource.isPlaying)  // Play once when holding starts
+            // Play sound once at the start of holding
+            if (!audioSource.isPlaying && holdTime > 0f)
             {
                 PlaySoundEffect();
             }
-            
-            if (holdSlider != null)
-            {
-                holdSlider.value = holdTime;
-            }
 
+            // Check if we've held long enough
             if (holdTime >= requiredHoldTime)
             {
                 TriggerHoldEvent();
@@ -133,62 +112,66 @@ public class OnTriggerEvent : MonoBehaviour
         }
         else
         {
+            // Not pressing E or left the trigger => reset hold if needed
             if (holdTime > 0f)
             {
                 ResetHoldTime();
             }
-            if (audioSource.isPlaying)  // Stop the sound effect if E is released
-            {
-                audioSource.Stop();
-            }
         }
     }
-
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         isPlayerInTrigger = true;
+
+        
+        // Show the slider upon entering the trigger
+        holdSlider.Trigger();
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         isPlayerInTrigger = false;
+
+        // Hide slider and reset hold time when exiting
         ResetHoldTime();
+        holdSlider.UnTrigger();
     }
 
     private void TriggerHoldEvent()
     {
         if (manager != null)
         {
-            manager.OnObjectDestroyed();  // Notify the manager first
+            manager.OnObjectDestroyed();
         }
 
-        // Add score using a global ScoreManager (recommended)
+        // Add score using a global ScoreManager (two-parameter version)
         ScoreManager.Instance.AddScore(100, 100);
 
         Debug.Log("Block destroyed, +100 points!");
-        Destroy(gameObject);  // Destroy the object
+        Destroy(gameObject);  
     }
 
     private void PlaySoundEffect()
     {
         if (soundEffect != null && audioSource != null)
         {
-            audioSource.PlayOneShot(soundEffect);  // Play the sound effect once when the E key is held
+            audioSource.PlayOneShot(soundEffect);
         }
     }
-    
+
     private void ResetHoldTime()
     {
         holdTime = 0f;
+        
+        
         if (holdSlider != null)
         {
-            holdSlider.value = 0f;
-            holdSlider.gameObject.SetActive(false);
+            holdSlider.holdSlider.value = 0f;
         }
+        
         if (audioSource.isPlaying)
         {
             audioSource.Stop();
         }
     }
-    
 }

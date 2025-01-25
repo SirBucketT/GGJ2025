@@ -4,6 +4,7 @@ using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class TimerAndUi : MonoBehaviour
@@ -16,8 +17,8 @@ public class TimerAndUi : MonoBehaviour
     [SerializeField] TMP_Text timerText;
     [SerializeField] TMP_Text gameOverValueText;
     
-    [SerializeField] float _timer = 10f;  
-    [SerializeField] float _lerpSpeed = 0.05f;
+    [SerializeField] float timer = 10f;  
+    [SerializeField] float lerpSpeed = 0.05f;
     
     [Header("Game Over Elements")]
     [SerializeField] GameObject gameOver;
@@ -26,20 +27,20 @@ public class TimerAndUi : MonoBehaviour
     private void Start()
     {
         timerFront.minValue = 0f;
-        timerFront.maxValue = _timer;
+        timerFront.maxValue = timer;
         timerBack.minValue = 0f;
-        timerBack.maxValue = _timer;
+        timerBack.maxValue = timer;
 
         gameOver.SetActive(false);
     }
     
     private void Update()
     {
-        _timer -= Time.deltaTime;
+        timer -= Time.deltaTime;
         
-        if (_timer <= 0f)
+        if (timer <= 0f)
         {
-            _timer = 0f;
+            timer = 0f;
             
             Time.timeScale = 0f;
             
@@ -47,11 +48,11 @@ public class TimerAndUi : MonoBehaviour
             gameUI.SetActive(false);
         }
         
-        timerFront.value = _timer;
-        timerBack.value = _timer + 2;
+        timerFront.value = timer;
+        timerBack.value = timer + 2;
         
-        timerBack.value = Mathf.Lerp(timerBack.value, timerFront.value, _lerpSpeed * Time.deltaTime);
+        timerBack.value = Mathf.Lerp(timerBack.value, timerFront.value, lerpSpeed * Time.deltaTime);
         
-        timerText.text = _timer.ToString("F2", CultureInfo.CurrentCulture) + "S";
+        timerText.text = timer.ToString("F2", CultureInfo.CurrentCulture) + "S";
     }
 }

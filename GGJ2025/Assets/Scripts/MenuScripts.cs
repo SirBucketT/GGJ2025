@@ -13,6 +13,7 @@ public class MenuScripts : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         MainMenu.SetActive(true);
         Credits.SetActive(false);
     }

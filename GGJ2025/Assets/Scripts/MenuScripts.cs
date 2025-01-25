@@ -10,4 +10,13 @@ public class MenuScripts : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+    
+    public void QuitGameButton()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        Debug.Log("Quit button pressed");
+    #endif
+        Application.Quit();
+    }
 }

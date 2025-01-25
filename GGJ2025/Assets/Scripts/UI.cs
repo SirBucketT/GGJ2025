@@ -1,17 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class UI : MonoBehaviour
 {
     
     [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject GameUI;
+    [SerializeField] GameObject gameUI;
+    [SerializeField] GameObject gameSettingsUI;
     
     void Start()
     {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
-        GameUI.SetActive(true);
+        gameUI.SetActive(true);
     }
 
     
@@ -21,6 +23,11 @@ public class UI : MonoBehaviour
         {
             PauseManager();    
         }
+    }
+
+    public void GameSettings()
+    {
+        
     }
 
 
@@ -47,5 +54,14 @@ public class UI : MonoBehaviour
         pauseMenu.SetActive(isPaused);
             
         Time.timeScale = isPaused ? 0 : 1;
+    }
+    
+    public void QuitGameButton()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        Debug.Log("Quit button pressed");
+    #endif
+        Application.Quit();
     }
 }

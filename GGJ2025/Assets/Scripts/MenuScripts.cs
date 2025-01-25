@@ -16,7 +16,8 @@ public class MenuScripts : MonoBehaviour
         MainMenu.SetActive(true);
         Credits.SetActive(false);
     }
-
+    
+    //manages states of active objects for credits and menu assets
     public void creditsButton()
     {
         MainMenu.SetActive(false);
@@ -29,11 +30,13 @@ public class MenuScripts : MonoBehaviour
         Credits.SetActive(false);
     }
     
+    //loads game
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
     
+    //quits game
     public void QuitGameButton()
     {
     #if UNITY_EDITOR

@@ -21,7 +21,7 @@ public class MenuScripts : MonoBehaviour
         howToPlay.SetActive(false);
     }
     
-    //manages states of active objects for credits and menu assets
+    //manages states of active objects for credits, instructions and menu assets
     public void CreditsButton()
     {
         mainMenu.SetActive(false);
@@ -37,6 +37,7 @@ public class MenuScripts : MonoBehaviour
     public void MenuButton()
     {
         mainMenu.SetActive(true);
+        howToPlay.SetActive(false);
         credits.SetActive(false);
     }
     

@@ -29,6 +29,12 @@ public class UI : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void GameRestarter()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
     public void ResumeGame()
     {
         PauseManager();

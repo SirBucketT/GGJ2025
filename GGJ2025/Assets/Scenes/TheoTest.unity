@@ -284,6 +284,22 @@ PrefabInstance:
       propertyPath: _lerpSpeed
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 4234340256306178450, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1850
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812442969731990032, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_margin.z
+      value: 4.831543
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812442969731990032, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4812442969731990032, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5928414609594697752, guid: d4471001e57ed5f418fc82409597659d, type: 3}
       propertyPath: m_Name
       value: UiContainer

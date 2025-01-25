@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class TimerAndUi : MonoBehaviour
 {
-    OnTriggerEvent _trigger;
+    ScoreManager _scoreManager;
     
     [Header("Slider Elements")]
     [SerializeField] Slider timerFront;
@@ -37,9 +37,8 @@ public class TimerAndUi : MonoBehaviour
         timerBack.maxValue = timer;
 
         gameOver.SetActive(false);
-        
-        scoreValueText.text = _trigger.scorePoint.ToString("F2", CultureInfo.CurrentCulture);
-        timerValueTextBack.text = _trigger.scorePoint.ToString("F2", CultureInfo.CurrentCulture);
+        scoreValueText.text = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
+        timerValueTextBack.text = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
     }
     
     private void Update()
@@ -64,7 +63,7 @@ public class TimerAndUi : MonoBehaviour
         timerText.text = timer.ToString("F2", CultureInfo.CurrentCulture) + "S";
         timerTextBack.text = timerText.text;
         
-        scoreValueText.text = _trigger.scorePoint.ToString("F2", CultureInfo.CurrentCulture);
-        timerValueTextBack.text = _trigger.scorePoint.ToString("F2", CultureInfo.CurrentCulture);
+        scoreValueText.text = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
+        timerValueTextBack.text = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
     }
 }

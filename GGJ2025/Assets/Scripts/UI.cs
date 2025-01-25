@@ -8,12 +8,14 @@ public class UI : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject gameUI;
     [SerializeField] GameObject gameSettingsUI;
+    [SerializeField] GameObject gameOverUI;
     
     void Start()
     {
         Time.timeScale = 1;
         gameSettingsUI.SetActive(false);
         pauseMenu.SetActive(false);
+        gameOverUI.SetActive(false);
         gameUI.SetActive(true);
     }
 

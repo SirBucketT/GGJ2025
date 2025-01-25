@@ -78,12 +78,13 @@ public class OnTriggerEvent : MonoBehaviour
     private OnTriggerEventManager manager;
     private AudioSource audioSource;  // AudioSource to play sound
     public AudioClip soundEffect;  // Sound effect to be played when holding E
-    public float scorePoint = 0.0f;
+    public float scorePoint;
 
     void Start()
     {
         manager = FindObjectOfType<OnTriggerEventManager>();
         audioSource = GetComponent<AudioSource>();
+        scorePoint = 0.0f;
     }
 
     void Update()
@@ -127,14 +128,18 @@ public class OnTriggerEvent : MonoBehaviour
 
     private void TriggerHoldEvent()
     {
-        Destroy(gameObject);  // Destroy the object instead of deactivating it
-        scorePoint += 100;
-
         if (manager != null)
         {
-            manager.OnObjectDestroyed();  // Notify the manager that the object is destroyed
+            manager.OnObjectDestroyed();  // Notify the manager first
         }
+
+        // Add score using a global ScoreManager (recommended)
+        ScoreManager.Instance.AddScore(100);
+
+        Debug.Log("Block destroyed, +100 points!");
+        Destroy(gameObject);  // Destroy the object
     }
+
     private void PlaySoundEffect()
     {
         if (soundEffect != null && audioSource != null)

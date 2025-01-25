@@ -6,7 +6,7 @@ public class OnTriggerEventManager : MonoBehaviour
     public List<GameObject> objects;
     private int currentIndex = 0;
     private int activeCount = 0;
-
+    
     void Awake() // Use Awake instead of Start
     {
         Debug.LogError("SCENE LOADED - CHECKING OBJECTS");
@@ -78,6 +78,7 @@ public class OnTriggerEvent : MonoBehaviour
     private OnTriggerEventManager manager;
     private AudioSource audioSource;  // AudioSource to play sound
     public AudioClip soundEffect;  // Sound effect to be played when holding E
+    public float scorePoint = 0.0f;
 
     void Start()
     {
@@ -127,6 +128,7 @@ public class OnTriggerEvent : MonoBehaviour
     private void TriggerHoldEvent()
     {
         Destroy(gameObject);  // Destroy the object instead of deactivating it
+        scorePoint += 100;
 
         if (manager != null)
         {

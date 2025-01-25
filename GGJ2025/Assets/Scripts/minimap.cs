@@ -5,16 +5,16 @@ public class minimap : MonoBehaviour
     [SerializeField] Transform player;
 
     
-    private Vector3 offset = new Vector3(0f, 30f, 0f);
+    public Vector3 offset = new Vector3(0f, 0f, -10f);
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         if (player == null) return;
         
-        Vector3 newPos = player.position + offset;
-        newPos.y = offset.y;
-        transform.position = newPos;
+        Vector3 newPosition = player.position + offset;
+        
 
-        transform.rotation = Quaternion.Euler(90f, player.eulerAngles.y, 0f);
+        transform.position = newPosition;
+        transform.rotation = Quaternion.identity;
     }
 }

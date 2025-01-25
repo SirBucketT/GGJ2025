@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         if (movement.magnitude > 0.1f)
         {
             // Calculate angle to rotate towards movement direction (in 2D)
-            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(-movement.x, movement.y) * Mathf.Rad2Deg;
             rb.rotation = angle; // Set the 2D rotation directly
         }
     }

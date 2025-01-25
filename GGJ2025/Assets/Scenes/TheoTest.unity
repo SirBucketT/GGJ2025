@@ -119,17 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &129677843 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3529135241165660287, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-  m_PrefabInstance: {fileID: 707883253263248963}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1239901396
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,14 +280,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1208436813700132603, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: scoreValueText
-      value: 
-      objectReference: {fileID: 129677843}
-    - target: {fileID: 4725987437672154809, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: m_Name
-      value: CountDownText
-      objectReference: {fileID: 0}
     - target: {fileID: 5928414609594697752, guid: d4471001e57ed5f418fc82409597659d, type: 3}
       propertyPath: m_Name
       value: UiContainer
@@ -343,10 +324,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8733805384498728145, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: audioMixer
-      value: 
-      objectReference: {fileID: 24100000, guid: 148f7e33500c1f8439de0faee8a49da0, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

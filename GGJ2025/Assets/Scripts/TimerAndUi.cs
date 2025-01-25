@@ -15,10 +15,13 @@ public class TimerAndUi : MonoBehaviour
     
     [Header("UI Text Elements")]
     [SerializeField] TMP_Text timerText;
+    [SerializeField] TMP_Text timerTextBack;
     [SerializeField] TMP_Text scoreValueText;
+    [SerializeField] TMP_Text timerValueTextBack;
     
     [SerializeField] float timer = 10f;  
     [SerializeField] float lerpSpeed = 0.05f;
+    [SerializeField] float delayTime = 2f;
     
     [Header("Game Over Elements")]
     [SerializeField] GameObject gameOver;
@@ -49,10 +52,13 @@ public class TimerAndUi : MonoBehaviour
         }
         
         timerFront.value = timer;
-        timerBack.value = timer + 2;
+        timerBack.value = timer + delayTime;
         
         timerBack.value = Mathf.Lerp(timerBack.value, timerFront.value, lerpSpeed * Time.deltaTime);
         
         timerText.text = timer.ToString("F2", CultureInfo.CurrentCulture) + "S";
+        timerTextBack.text = timerText.text;
+        
+        timerValueTextBack.text = scoreValueText.text;
     }
 }

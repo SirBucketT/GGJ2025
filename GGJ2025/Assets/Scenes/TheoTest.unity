@@ -264,6 +264,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1039497404122003527, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039497404122003527, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049501465696270226, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049501465696270226, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 5928414609594697752, guid: d4471001e57ed5f418fc82409597659d, type: 3}
       propertyPath: m_Name
       value: UiContainer

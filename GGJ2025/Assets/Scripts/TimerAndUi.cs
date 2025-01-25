@@ -15,7 +15,7 @@ public class TimerAndUi : MonoBehaviour
     
     [Header("UI Text Elements")]
     [SerializeField] TMP_Text timerText;
-    [SerializeField] TMP_Text gameOverValueText;
+    [SerializeField] TMP_Text scoreValueText;
     
     [SerializeField] float timer = 10f;  
     [SerializeField] float lerpSpeed = 0.05f;

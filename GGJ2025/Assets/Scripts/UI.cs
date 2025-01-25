@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -16,13 +17,26 @@ public class UI : MonoBehaviour
     
     void Update()
     {
-        //checks if escape button is pressed and reverses whatever state the pause menu UI elements & time is in
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            bool isPaused = !pauseMenu.activeSelf;
-            pauseMenu.SetActive(isPaused);
+        PauseManager();    
+    }
+
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ResumeGame()
+    {
+        PauseManager();
+    }
+    
+    //checks if the time.timescale is active or not and sets the pause menu UI elements to whatever state it's in.
+    void PauseManager()
+    {
+        bool isPaused = !pauseMenu.activeSelf;
+        pauseMenu.SetActive(isPaused);
             
-            Time.timeScale = isPaused ? 0 : 1;
-        }    
+        Time.timeScale = isPaused ? 0 : 1;
     }
 }

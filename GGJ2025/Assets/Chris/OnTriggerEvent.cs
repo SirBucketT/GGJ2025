@@ -1,51 +1,124 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+public class OnTriggerEventManager : MonoBehaviour
+{
+    public List<GameObject> objects;
+    private int currentIndex = 0;
+    private int activeCount = 0;
+    
+    void Awake() // Use Awake instead of Start
+    {
+        Debug.LogError("SCENE LOADED - CHECKING OBJECTS");
+    
+        // Force log number of objects
+        Debug.LogError($"Total Objects in List: {objects.Count}");
+    }
+
+    void Start()
+    {
+        // Find all objects with OnTriggerEvent script if manual assignment fails
+        if (objects == null || objects.Count == 0)
+        {
+            objects = new List<GameObject>();
+            OnTriggerEvent[] triggerEvents = FindObjectsOfType<OnTriggerEvent>();
+            foreach (OnTriggerEvent evt in triggerEvents)
+            {
+                objects.Add(evt.gameObject);
+            }
+        }
+
+        // Forcibly activate initialization
+        if (objects.Count > 0)
+        {
+            ActivateNextSet();
+        }
+    }
+
+    public void ActivateNextSet()
+    {
+        Debug.LogError("ACTIVATE NEXT SET CALLED");
+
+        // Deactivate current 5 objects
+        for (int i = 0; i < 5; i++)
+        {
+            int index = (currentIndex + i) % objects.Count;
+            objects[index].SetActive(false);
+        }
+
+        // Move to next set
+        currentIndex = (currentIndex + 5) % objects.Count;
+
+        // Activate next 5 objects
+        activeCount = 5;
+        for (int i = 0; i < 5; i++)
+        {
+            int index = (currentIndex + i) % objects.Count;
+            objects[index].SetActive(true);
+        }
+    }
+
+    public void OnObjectDisabled()
+    {
+        Debug.LogError("OBJECT DISABLED");
+        
+        activeCount--;
+        if (activeCount <= 0)
+        {
+            ActivateNextSet();
+        }
+    }
+}
 
 public class OnTriggerEvent : MonoBehaviour
 {
     private bool isPlayerInTrigger = false;
-    private float holdTime = 0f; // Tracks how long E is held
-    private readonly float requiredHoldTime = 5f; // Time required to trigger the event
+    private float holdTime = 0f;
+    private readonly float requiredHoldTime = 2f;
+    private OnTriggerEventManager manager;
+
+    void Start()
+    {
+        manager = FindObjectOfType<OnTriggerEventManager>();
+    }
 
     void Update()
     {
-        // Check if the player is in the trigger area and holding the E key
         if (isPlayerInTrigger && Input.GetKey(KeyCode.E))
         {
-            holdTime += Time.deltaTime; // Increment the hold time
+            holdTime += Time.deltaTime;
 
             if (holdTime >= requiredHoldTime)
             {
                 TriggerHoldEvent();
-                holdTime = 0f; // Reset hold time after triggering the event
+                holdTime = 0f;
             }
         }
         else
         {
-            holdTime = 0f; // Reset hold time if E is not being held
+            holdTime = 0f;
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("A collider has entered the OnTriggerEvent trigger");
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        // Debug.Log("A collider is inside the OnTriggerEvent trigger");
-        isPlayerInTrigger = true; // Set the flag to true when in the trigger
+        isPlayerInTrigger = true;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("A collider has exited the OnTriggerEvent trigger");
-        isPlayerInTrigger = false; // Reset the flag when leaving the trigger
-        holdTime = 0f; // Reset the hold time
+        isPlayerInTrigger = false;
+        holdTime = 0f;
     }
 
     private void TriggerHoldEvent()
     {
-        Debug.Log("E key held for 5 seconds! Event triggered.");
-        // Add your event logic here
+        Debug.Log("E key held for 2 seconds! Event triggered.");
+        gameObject.SetActive(false);
+
+        if (manager != null)
+        {
+            manager.OnObjectDisabled();
+        }
     }
 }   

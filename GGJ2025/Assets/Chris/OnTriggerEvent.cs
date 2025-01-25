@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class OnTriggerEvent : MonoBehaviour
 {
@@ -26,20 +25,20 @@ public class OnTriggerEvent : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("A collider has entered the OnTriggerEvent trigger");
     }
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerStay2D(Collider2D other)
     {
         // Debug.Log("A collider is inside the OnTriggerEvent trigger");
         isPlayerInTrigger = true; // Set the flag to true when in the trigger
     }
 
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        // Debug.Log("A collider has exited the OnTriggerEvent trigger");
+        Debug.Log("A collider has exited the OnTriggerEvent trigger");
         isPlayerInTrigger = false; // Reset the flag when leaving the trigger
         holdTime = 0f; // Reset the hold time
     }
@@ -49,4 +48,4 @@ public class OnTriggerEvent : MonoBehaviour
         Debug.Log("E key held for 5 seconds! Event triggered.");
         // Add your event logic here
     }
-}
+}   

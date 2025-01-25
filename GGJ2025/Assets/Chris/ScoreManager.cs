@@ -1,10 +1,19 @@
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; } // Singleton instance
 
     public int score = 0; // The player's current score
+    [SerializeField] TMP_Text scoreGainText; //score gain effect
+    [SerializeField] TMP_Text scoreGainBackText;
+
+    void Start()
+    {
+        scoreGainText.gameObject.SetActive(false);
+        scoreGainBackText.gameObject.SetActive(false);
+    }
 
     void Awake()
     {
@@ -21,11 +30,24 @@ public class ScoreManager : MonoBehaviour
     }
 
     // Adds points to the score
-    public void AddScore(int points)
+    public void AddScore(int points, int ScoreGain)
     {
         score += points;
+        StartCoroutine(ShowScoreGain(ScoreGain));
         Debug.Log($"Score: {score}"); // Log the updated score
         UpdateScoreUI(); // Update any UI, if needed
+    }
+    private System.Collections.IEnumerator ShowScoreGain(int ScoreGain)
+    {
+        scoreGainText.text = $"+{ScoreGain}";  
+        scoreGainBackText.text = $"+{ScoreGain}";
+        scoreGainText.gameObject.SetActive(true);
+        scoreGainBackText.gameObject.SetActive(true);
+        
+        yield return new WaitForSeconds(1f);  
+
+        scoreGainText.gameObject.SetActive(false);
+        scoreGainBackText.gameObject.SetActive(false);
     }
 
     // Returns the current score

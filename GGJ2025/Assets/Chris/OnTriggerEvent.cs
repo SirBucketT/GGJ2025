@@ -134,7 +134,7 @@ public class OnTriggerEvent : MonoBehaviour
         }
 
         // Add score using a global ScoreManager (recommended)
-        ScoreManager.Instance.AddScore(100);
+        ScoreManager.Instance.AddScore(100, 100);
 
         Debug.Log("Block destroyed, +100 points!");
         Destroy(gameObject);  // Destroy the object

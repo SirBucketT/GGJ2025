@@ -4,35 +4,36 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Speed of the player
 
-    private Vector3 movement; // Stores the direction of movement
-    private Rigidbody rb; // Reference to the Rigidbody component
+    private Vector2 movement; // Stores the direction of movement
+    private Rigidbody2D rb; // Reference to the Rigidbody2D component
 
     void Start()
     {
-        // Get the Rigidbody component attached to the player
-        rb = GetComponent<Rigidbody>();
+        // Get the Rigidbody2D component attached to the player
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         // Get input from the WASD keys
         float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+        float moveY = Input.GetAxis("Vertical");
 
         // Create the movement vector based on input
-        movement = new Vector3(moveX, 0f, moveZ);
+        movement = new Vector2(moveX, moveY); // Using Vector2 for movement in 2D
 
         // Rotate the player to face the movement direction if moving
         if (movement.magnitude > 0.1f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(movement);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            // Calculate angle to rotate towards movement direction (in 2D)
+            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            rb.rotation = angle; // Set the 2D rotation directly
         }
     }
 
     void FixedUpdate()
     {
-        // Apply movement to the Rigidbody
+        // Apply movement to the Rigidbody2D
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 }

@@ -17,7 +17,10 @@ public class UI : MonoBehaviour
     
     void Update()
     {
-        PauseManager();    
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseManager();    
+        }
     }
 
 

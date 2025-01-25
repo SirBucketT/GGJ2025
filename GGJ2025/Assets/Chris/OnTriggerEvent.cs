@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -83,6 +84,9 @@ public class OnTriggerEvent : MonoBehaviour
     public AudioClip soundEffect;
     public float scorePoint;
 
+    
+    public static Action<float> OnShowProgress;
+    
     private void Start()
     {
         manager = FindObjectOfType<OnTriggerEventManager>();
@@ -96,7 +100,7 @@ public class OnTriggerEvent : MonoBehaviour
         if (isPlayerInTrigger && Input.GetKey(KeyCode.E))
         {
             holdTime += Time.deltaTime;
-
+            OnShowProgress?.Invoke(holdTime);
             // Play sound once at the start of holding
             if (!audioSource.isPlaying && holdTime > 0f)
             {
@@ -125,7 +129,10 @@ public class OnTriggerEvent : MonoBehaviour
 
         
         // Show the slider upon entering the trigger
-        holdSlider.Trigger();
+        if(holdSlider != null)
+            holdSlider.Trigger();
+        FindFirstObjectByType<HoldSlider>().Trigger();
+        //else Debug.LogWarning("HOLD SLIDER IS NULL", this);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -134,7 +141,9 @@ public class OnTriggerEvent : MonoBehaviour
 
         // Hide slider and reset hold time when exiting
         ResetHoldTime();
-        holdSlider.UnTrigger();
+        if(holdSlider != null)
+            holdSlider.UnTrigger();
+        else Debug.LogWarning("Hold Slider is null",this);
     }
 
     private void TriggerHoldEvent()

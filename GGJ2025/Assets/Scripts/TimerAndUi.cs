@@ -64,8 +64,6 @@ public class TimerAndUi : MonoBehaviour
 
         if (_scoreManager != null)
         {
-            //scoreValueText.text     = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
-            //timerValueTextBack.text = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
             scoreValueText.text = Mathf.FloorToInt(_scoreManager.score).ToString();
             timerValueTextBack.text = Mathf.FloorToInt(_scoreManager.score).ToString();
         }

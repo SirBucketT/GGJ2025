@@ -280,33 +280,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5530456741860799247, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 5807919498186753179, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -50
+    - target: {fileID: 1208436813700132603, guid: d4471001e57ed5f418fc82409597659d, type: 3}
+      propertyPath: _lerpSpeed
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5928414609594697752, guid: d4471001e57ed5f418fc82409597659d, type: 3}
       propertyPath: m_Name
       value: UiContainer
-      objectReference: {fileID: 0}
-    - target: {fileID: 6444721518584488314, guid: d4471001e57ed5f418fc82409597659d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8695385099957848525, guid: d4471001e57ed5f418fc82409597659d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -7,6 +7,7 @@ public class UI : MonoBehaviour
     
     void Start()
     {
+        Time.timeScale = 1;
         pauseMenu.SetActive(false);
     }
 

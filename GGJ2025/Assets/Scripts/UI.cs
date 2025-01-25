@@ -12,6 +12,7 @@ public class UI : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1;
+        gameSettingsUI.SetActive(false);
         pauseMenu.SetActive(false);
         gameUI.SetActive(true);
     }
@@ -27,7 +28,14 @@ public class UI : MonoBehaviour
 
     public void GameSettings()
     {
-        
+        pauseMenu.SetActive(false);
+        gameSettingsUI.SetActive(true);
+    }
+    
+    public void ReturnPauseMenu()
+    {
+        pauseMenu.SetActive(true);
+        gameSettingsUI.SetActive(false);
     }
 
 

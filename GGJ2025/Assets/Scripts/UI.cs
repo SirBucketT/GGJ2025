@@ -26,6 +26,13 @@ public class UI : MonoBehaviour
         {
             PauseManager();    
         }
+        
+        //testing implementation of game over UI
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            bool isGameOver = !gameOverUI.activeSelf;
+            gameOverUI.SetActive(isGameOver);
+        }
     }
 
     public void GameSettings()

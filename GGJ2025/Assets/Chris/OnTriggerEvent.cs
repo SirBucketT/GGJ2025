@@ -6,11 +6,11 @@ public class OnTriggerEventManager : MonoBehaviour
     public List<GameObject> objects;
     private int currentIndex = 0;
     private int activeCount = 0;
-    
+
     void Awake() // Use Awake instead of Start
     {
         Debug.LogError("SCENE LOADED - CHECKING OBJECTS");
-    
+
         // Force log number of objects
         Debug.LogError($"Total Objects in List: {objects.Count}");
     }
@@ -58,10 +58,10 @@ public class OnTriggerEventManager : MonoBehaviour
         }
     }
 
-    public void OnObjectDisabled()
+    public void OnObjectDestroyed()
     {
-        Debug.LogError("OBJECT DISABLED");
-        
+        Debug.LogError("OBJECT DESTROYED");
+
         activeCount--;
         if (activeCount <= 0)
         {
@@ -76,10 +76,13 @@ public class OnTriggerEvent : MonoBehaviour
     private float holdTime = 0f;
     private readonly float requiredHoldTime = 2f;
     private OnTriggerEventManager manager;
+    private AudioSource audioSource;  // AudioSource to play sound
+    public AudioClip soundEffect;  // Sound effect to be played when holding E
 
     void Start()
     {
         manager = FindObjectOfType<OnTriggerEventManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -87,6 +90,12 @@ public class OnTriggerEvent : MonoBehaviour
         if (isPlayerInTrigger && Input.GetKey(KeyCode.E))
         {
             holdTime += Time.deltaTime;
+
+            // Play the sound effect while holding E down
+            if (holdTime >= 0f && !audioSource.isPlaying)  // Play once when holding starts
+            {
+                PlaySoundEffect();
+            }
 
             if (holdTime >= requiredHoldTime)
             {
@@ -97,6 +106,10 @@ public class OnTriggerEvent : MonoBehaviour
         else
         {
             holdTime = 0f;
+            if (audioSource.isPlaying)  // Stop the sound effect if E is released
+            {
+                audioSource.Stop();
+            }
         }
     }
 
@@ -113,12 +126,19 @@ public class OnTriggerEvent : MonoBehaviour
 
     private void TriggerHoldEvent()
     {
-        Debug.Log("E key held for 2 seconds! Event triggered.");
-        gameObject.SetActive(false);
+        Destroy(gameObject);  // Destroy the object instead of deactivating it
 
         if (manager != null)
         {
-            manager.OnObjectDisabled();
+            manager.OnObjectDestroyed();  // Notify the manager that the object is destroyed
         }
     }
-}   
+    private void PlaySoundEffect()
+    {
+        if (soundEffect != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(soundEffect);  // Play the sound effect once when the E key is held
+        }
+    }
+    
+}

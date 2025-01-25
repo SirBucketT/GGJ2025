@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -10,22 +11,22 @@ public class MenuScripts : MonoBehaviour
     [SerializeField] GameObject MainMenu;
     [SerializeField] GameObject Credits;
 
+    private void Start()
+    {
+        MainMenu.SetActive(true);
+        Credits.SetActive(false);
+    }
+
     public void creditsButton()
     {
-        if (MainMenu.activeInHierarchy)
-        {
-            MainMenu.SetActive(false);
-            Credits.SetActive(true);
-        }
+        MainMenu.SetActive(false);
+        Credits.SetActive(true);
     }
 
     public void MenuButton()
     {
-        if (!MainMenu.activeInHierarchy)
-        {
-            MainMenu.SetActive(true);
-            Credits.SetActive(false);
-        }
+        MainMenu.SetActive(true);
+        Credits.SetActive(false);
     }
     
     public void StartGame()

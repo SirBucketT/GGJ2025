@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     public int score = 0; // The player's current score
     [SerializeField] TMP_Text scoreGainText; //score gain effect
     [SerializeField] TMP_Text scoreGainBackText;
+    
 
     void Start()
     {

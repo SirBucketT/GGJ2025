@@ -28,11 +28,11 @@ public class UI : MonoBehaviour
         }
         
         //testing implementation of game over UI
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            bool isGameOver = !gameOverUI.activeSelf;
-            gameOverUI.SetActive(isGameOver);
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+          //  bool isGameOver = !gameOverUI.activeSelf;
+            //gameOverUI.SetActive(isGameOver);
+        //}
     }
 
     public void GameSettings()

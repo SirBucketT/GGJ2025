@@ -125,6 +125,7 @@ MonoBehaviour:
   timerTextBack: {fileID: 6970010948576214502}
   scoreValueText: {fileID: 3529135241165660287}
   timerValueTextBack: {fileID: 5136109680394293726}
+  scoreFinal: {fileID: 3189956889169307636}
   timer: 60
   lerpSpeed: 0.05
   delayTime: 1

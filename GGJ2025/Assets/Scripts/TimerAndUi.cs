@@ -16,6 +16,7 @@ public class TimerAndUi : MonoBehaviour
     [SerializeField] TMP_Text timerTextBack;
     [SerializeField] TMP_Text scoreValueText;
     [SerializeField] TMP_Text timerValueTextBack;
+    [SerializeField] TMP_Text scoreFinal;
 
     [SerializeField] float timer = 10f;  
     [SerializeField] float lerpSpeed = 0.05f;
@@ -27,6 +28,7 @@ public class TimerAndUi : MonoBehaviour
 
     private void Start()
     {
+        scoreFinal.gameObject.SetActive(false);
         timerFront.minValue = 0f;
         timerFront.maxValue = timer;
         timerBack.minValue = 0f;
@@ -54,6 +56,8 @@ public class TimerAndUi : MonoBehaviour
             Time.timeScale = 0f;
             gameOver.SetActive(true);
             gameUI.SetActive(false);
+            scoreFinal.text = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
+            scoreFinal.gameObject.SetActive(true);
         }
 
         timerFront.value = timer;

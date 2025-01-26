@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip idleSound; // Idle sound effect
     private bool isMoving = false; // Track if the player is moving or idle
     private bool isDrivingSoundPlaying = false; // Track if driving sound is playing
+    private float timer = 0f; // Timer to track time for audio pause
 
     void Start()
     {
@@ -24,6 +25,32 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Increment the timer by the time passed each frame
+        timer += Time.deltaTime;
+
+        // Pause all audio after 60 seconds
+        if (timer >= 60f)
+        {
+            StopAudio();
+        }
+
+        // Check if the game is paused (e.g., Esc key is pressed)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Toggle pause state
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0; // Pause the game
+                StopAudio(); // Stop the audio when paused
+            }
+            else
+            {
+                Time.timeScale = 1; // Unpause the game
+                PlayAudio(); // Resume audio if the player is moving
+            }
+            return; // Early return to prevent further updates during pause
+        }
+
         // Get input from the WASD keys
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
@@ -89,6 +116,27 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // Apply movement to the Rigidbody2D
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (Time.timeScale == 1) // Only move the player if the game is unpaused
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
+    }
+
+    // Function to stop the audio
+    private void StopAudio()
+    {
+        if (audioSource.isPlaying)
+        {
+            audioSource.Pause(); // Pause the audio if it's playing
+        }
+    }
+
+    // Function to resume the audio when unpaused
+    private void PlayAudio()
+    {
+        if (!audioSource.isPlaying && isDrivingSoundPlaying)
+        {
+            audioSource.Play(); // Resume playing if it's not already playing
+        }
     }
 }

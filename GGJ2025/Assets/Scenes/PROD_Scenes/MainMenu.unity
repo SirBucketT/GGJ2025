@@ -1391,7 +1391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Z\xE4tha Malmberg\n\nTheodor Kvarnstr\xF6m\n\nChristoffer Rozenbach\n\nAlexander
+  m_text: "Z\xE4tha Malmberg\n\nTheodor Kvarnstr\xF6m\n\nChristoffer Rozenbachs\n\nAlexander
     Hamparsomian"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bbd40256dc189b4aad612177c686209, type: 2}

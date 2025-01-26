@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip drivingSound; // Driving sound effect
     public AudioClip idleSound; // Idle sound effect
     private bool isMoving = false; // Track if the player is moving or idle
+    private bool isDrivingSoundPlaying = false; // Track if driving sound is playing
 
     void Start()
     {
@@ -59,18 +60,27 @@ public class PlayerMovement : MonoBehaviour
             rb.rotation = angle; // Set the 2D rotation directly
 
             // Play the driving sound if it's not already playing and the sound is assigned
-            if (drivingSound != null && (!audioSource.isPlaying || audioSource.clip != drivingSound))
+            if (drivingSound != null && !isDrivingSoundPlaying)
             {
                 audioSource.Stop(); // Stop the idle sound (if playing)
-                audioSource.PlayOneShot(drivingSound); // Play the driving sound
+                audioSource.clip = drivingSound; // Set the driving sound as the clip
+                audioSource.loop = true; // Make sure the driving sound loops
+                audioSource.Play(); // Start playing the driving sound
+                isDrivingSoundPlaying = true; // Mark that the driving sound is playing
             }
         }
         else
         {
-            // Play the idle sound if it's not already playing and the sound is assigned
-            if (idleSound != null && (!audioSource.isPlaying || audioSource.clip != idleSound))
+            // Stop the driving sound if the player is idle
+            if (isDrivingSoundPlaying)
             {
-                audioSource.Stop(); // Stop the driving sound (if playing)
+                audioSource.Stop(); // Stop the driving sound
+                isDrivingSoundPlaying = false;
+            }
+
+            // Play the idle sound if it's not already playing and the sound is assigned
+            if (idleSound != null && !audioSource.isPlaying)
+            {
                 audioSource.PlayOneShot(idleSound); // Play the idle sound
             }
         }

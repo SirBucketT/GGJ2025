@@ -57,8 +57,11 @@ public class TimerAndUi : MonoBehaviour
         }
 
         timerFront.value = timer;
-        timerBack.value  = Mathf.Lerp(timerBack.value, timerFront.value, lerpSpeed * Time.deltaTime);
+       // timerBack.value  = Mathf.Lerp(timerBack.value, timerFront.value, lerpSpeed * Time.deltaTime);
 
+       timerBack.value = timerFront.value + delayTime;
+           //Mathf.Lerp(timerBack.value, timerFront.value, lerpSpeed * Time.unscaledDeltaTime); 
+       
         timerText.text     = timer.ToString("F2", CultureInfo.CurrentCulture) + "S";
         timerTextBack.text = timerText.text;
 

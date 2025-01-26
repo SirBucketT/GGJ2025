@@ -56,7 +56,7 @@ public class TimerAndUi : MonoBehaviour
             Time.timeScale = 0f;
             gameOver.SetActive(true);
             gameUI.SetActive(false);
-            scoreFinal.text = _scoreManager.score.ToString("F2", CultureInfo.CurrentCulture);
+            scoreFinal.text = Mathf.FloorToInt(_scoreManager.score).ToString();
             scoreFinal.gameObject.SetActive(true);
         }
 

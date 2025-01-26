@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -83,6 +84,7 @@ public class OnTriggerEvent : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip soundEffect;
     public float scorePoint;
+    
 
     
     public static Action<float> OnShowProgress;
@@ -126,8 +128,6 @@ public class OnTriggerEvent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         isPlayerInTrigger = true;
-
-        
         // Show the slider upon entering the trigger
         if(holdSlider != null)
             holdSlider.Trigger();
@@ -138,7 +138,6 @@ public class OnTriggerEvent : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         isPlayerInTrigger = false;
-
         // Hide slider and reset hold time when exiting
         ResetHoldTime();
         if(holdSlider != null)
@@ -171,8 +170,6 @@ public class OnTriggerEvent : MonoBehaviour
     private void ResetHoldTime()
     {
         holdTime = 0f;
-        
-        
         if (holdSlider != null)
         {
             holdSlider.holdSlider.value = 0f;

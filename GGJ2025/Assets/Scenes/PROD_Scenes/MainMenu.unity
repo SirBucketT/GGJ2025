@@ -2691,7 +2691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: bubble trouble
+  m_text: "Plumer\n   Hero"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6bbd40256dc189b4aad612177c686209, type: 2}
   m_sharedMaterial: {fileID: 413099090091373395, guid: 6bbd40256dc189b4aad612177c686209, type: 2}

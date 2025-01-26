@@ -34,9 +34,21 @@ public class HoldSlider : MonoBehaviour
 
     private void OnProgressUpdated(float progress)
     {
-        holdSlider.value = progress;
-        if(holdSlider.value >= onTriggerEvent.requiredHoldTime)
-            UnTrigger();
+        // Check if holdSlider is not null before accessing its value
+        if (holdSlider != null)
+        {
+            holdSlider.value = progress;
+
+            // Check if onTriggerEvent is not null before accessing requiredHoldTime
+            if (onTriggerEvent != null && holdSlider.value >= onTriggerEvent.requiredHoldTime)
+            {
+                UnTrigger();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("HoldSlider is null; cannot update progress.");
+        }
     }
 
     // void Update()

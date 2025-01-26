@@ -128,22 +128,39 @@ public class OnTriggerEvent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         isPlayerInTrigger = true;
-        // Show the slider upon entering the trigger
-        if(holdSlider != null)
+    
+        // Check if holdSlider is not null, and only then proceed
+        if (holdSlider != null)
+        {
+            // Show the slider upon entering the trigger
             holdSlider.Trigger();
-        FindFirstObjectByType<HoldSlider>().Trigger();
-        //else Debug.LogWarning("HOLD SLIDER IS NULL", this);
+            FindFirstObjectByType<HoldSlider>().Trigger();
+        }
+        else
+        {
+            Debug.LogWarning("HOLD SLIDER IS NULL");
+            return;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         isPlayerInTrigger = false;
-        // Hide slider and reset hold time when exiting
+    
+        // Reset hold time when exiting
         ResetHoldTime();
-        if(holdSlider != null)
+    
+        // Check if holdSlider is not null, and only then proceed
+        if (holdSlider != null)
+        {
             holdSlider.UnTrigger();
-        else Debug.LogWarning("Hold Slider is null",this);
+        }
+        else
+        {
+            Debug.LogWarning("HOLD SLIDER IS NULL");
+        }
     }
+
 
     private void TriggerHoldEvent()
     {
@@ -151,12 +168,24 @@ public class OnTriggerEvent : MonoBehaviour
         {
             manager.OnObjectDestroyed();
         }
+        else
+        {
+            Debug.LogWarning("Manager is null, cannot trigger OnObjectDestroyed.");
+        }
 
         // Add score using a global ScoreManager (two-parameter version)
-        ScoreManager.Instance.AddScore(100, 100);
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddScore(100, 100);
+            Debug.Log("Block destroyed, +100 points!");
+        }
+        else
+        {
+            Debug.LogWarning("ScoreManager.Instance is null, cannot add score.");
+        }
 
-        Debug.Log("Block destroyed, +100 points!");
-        Destroy(gameObject);  
+        // Destroy the game object
+        Destroy(gameObject);
     }
 
     private void PlaySoundEffect()

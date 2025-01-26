@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip idleSound; // Idle sound effect
     private bool isMoving = false; // Track if the player is moving or idle
     private bool isDrivingSoundPlaying = false; // Track if driving sound is playing
-    private float timer = 0f; // Timer to track time for audio pause
+    private float timer = 0f; // Timer to track time for audio pause and movement disable
+    private bool movementDisabled = false; // Track if movement keys are disabled
 
     void Start()
     {
@@ -28,10 +29,17 @@ public class PlayerMovement : MonoBehaviour
         // Increment the timer by the time passed each frame
         timer += Time.deltaTime;
 
-        // Pause all audio after 60 seconds
-        if (timer >= 60f)
+        // Pause all audio and disable movement after 60 seconds
+        if (timer >= 60f && !movementDisabled)
         {
             StopAudio();
+            movementDisabled = true; // Disable movement
+        }
+
+        // If movement is disabled, do not process any input for movement
+        if (movementDisabled)
+        {
+            return;
         }
 
         // Check if the game is paused (e.g., Esc key is pressed)
@@ -115,8 +123,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply movement to the Rigidbody2D
-        if (Time.timeScale == 1) // Only move the player if the game is unpaused
+        // Apply movement to the Rigidbody2D only if the game is unpaused and movement is not disabled
+        if (Time.timeScale == 1 && !movementDisabled) // Only move the player if the game is unpaused and movement is not disabled
         {
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }

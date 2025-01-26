@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class OnTriggerEventManager : MonoBehaviour
 {
@@ -128,39 +126,22 @@ public class OnTriggerEvent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         isPlayerInTrigger = true;
-    
-        // Check if holdSlider is not null, and only then proceed
-        if (holdSlider != null)
-        {
-            // Show the slider upon entering the trigger
+        // Show the slider upon entering the trigger
+        if(holdSlider != null)
             holdSlider.Trigger();
-            FindFirstObjectByType<HoldSlider>().Trigger();
-        }
-        else
-        {
-            Debug.LogWarning("HOLD SLIDER IS NULL");
-            return;
-        }
+        FindFirstObjectByType<HoldSlider>().Trigger();
+        //else Debug.LogWarning("HOLD SLIDER IS NULL", this);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         isPlayerInTrigger = false;
-    
-        // Reset hold time when exiting
+        // Hide slider and reset hold time when exiting
         ResetHoldTime();
-    
-        // Check if holdSlider is not null, and only then proceed
-        if (holdSlider != null)
-        {
+        if(holdSlider != null)
             holdSlider.UnTrigger();
-        }
-        else
-        {
-            Debug.LogWarning("HOLD SLIDER IS NULL");
-        }
+        else Debug.LogWarning("Hold Slider is null",this);
     }
-
 
     private void TriggerHoldEvent()
     {
@@ -168,24 +149,12 @@ public class OnTriggerEvent : MonoBehaviour
         {
             manager.OnObjectDestroyed();
         }
-        else
-        {
-            Debug.LogWarning("Manager is null, cannot trigger OnObjectDestroyed.");
-        }
 
         // Add score using a global ScoreManager (two-parameter version)
-        if (ScoreManager.Instance != null)
-        {
-            ScoreManager.Instance.AddScore(100, 100);
-            Debug.Log("Block destroyed, +100 points!");
-        }
-        else
-        {
-            Debug.LogWarning("ScoreManager.Instance is null, cannot add score.");
-        }
+        ScoreManager.Instance.AddScore(100, 100);
 
-        // Destroy the game object
-        Destroy(gameObject);
+        Debug.Log("Block destroyed, +100 points!");
+        Destroy(gameObject);  
     }
 
     private void PlaySoundEffect()

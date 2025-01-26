@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class HoldSlider : MonoBehaviour
@@ -34,31 +32,15 @@ public class HoldSlider : MonoBehaviour
 
     private void OnProgressUpdated(float progress)
     {
-        // Check if holdSlider is not null before accessing its value
-        if (holdSlider != null)
-        {
-            holdSlider.value = progress;
-
-            // Check if onTriggerEvent is not null before accessing requiredHoldTime
-            if (onTriggerEvent != null && holdSlider.value >= onTriggerEvent.requiredHoldTime)
-            {
-                UnTrigger();
-            }
-        }
-        else
-        {
-            Debug.LogWarning("HoldSlider is null; cannot update progress.");
-        }
+        holdSlider.value = progress;
+        if(holdSlider.value >= onTriggerEvent.requiredHoldTime)
+            UnTrigger();
     }
 
-    // void Update()
-    // {
-    //     // Update slider fill if assigned
-    //     if (holdSlider != null)
-    //     {
-    //         holdSlider.value = onTriggerEvent.holdTime;
-    //     }
-    // }
+     void Update()
+     {
+         holdSlider.value = onTriggerEvent.holdTime;
+    }
 
     public void Trigger()
     {
